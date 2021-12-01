@@ -1,0 +1,49 @@
+{
+  "name": "sd-0x-project-shopping-cart",
+  "version": "1.0.0",
+  "description": "Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "cypress": "cypress run",
+    "cypress:open": "cypress open",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js",
+    "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input",
+    "serialize": "node -e 'require(\"./cypress/utils/testCoverage.js\").testCoverage()'"
+  },
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "**/helpers/**"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js?(x)"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betrybe/sd-0x-project-shopping-cart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betrybe/sd-0x-project-shopping-cart/issues"
+  },
+  "homepage": "https://github.com/betrybe/sd-0x-project-shopping-cart#readme",
+  "dependencies": {
+    "cypress": "4.3.0",
+    "cypress-multi-reporters": "1.2.4",
+    "eslint-config-trybe-fundamentals": "1.1.0",
+    "jest": "24.9.0",
+    "mocha": "7.1.1",
+    "mochawesome": "5.0.0",
+    "mochawesome-merge": "4.0.3",
+    "mochawesome-report-generator": "4.1.0",
+    "stylelint": "13.8.0",
+    "stylelint-config-standard": "20.0.0"
+  }
+}

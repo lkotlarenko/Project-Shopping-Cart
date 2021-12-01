@@ -1,0 +1,21 @@
+{
+  "extends": "trybe-fundamentals",
+  "rules": {
+    "no-alert": "off",
+    "no-console": "off",
+    "prefer-arrow-callback": "off",
+    "func-names": "off",
+    "no-unused-vars": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["script.js"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
+  "env": {
+    "browser": true
+  }
+}
