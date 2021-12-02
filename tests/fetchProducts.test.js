@@ -13,7 +13,7 @@ describe('1 - Teste a função fetchProducts', () => {
     try {
       await fetchProducts();
     } catch (error) {
-      expect(error).toEqual(new Error('No parameter!!!'));
+      expect(error).toEqual(new Error('Parameter Missing!!!'));
     }
   })
 

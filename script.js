@@ -29,7 +29,7 @@ function getSkuFromProductItem(item) {
 }
 
 function cartItemClickListener(event) {
-  // coloque seu código aqui
+  
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -49,6 +49,8 @@ const syncList = (fetchList) => {
     document.querySelector('.items').appendChild(item);
   });
 };
+
+console.log(fetchItem('MLB1613404303'));
 
 window.onload = async () => {
   const fetchList = await fetchProducts('computador');
