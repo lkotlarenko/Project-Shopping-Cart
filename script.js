@@ -1,5 +1,3 @@
-// starting
-
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -42,4 +40,17 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-window.onload = () => { };
+const syncList = (fetchList) => {
+  // extrair as informações de cada item no array devolvido pela api e usar com
+  // a func createProductItemElement / dar append no elemento gerado
+  fetchList.forEach(({ id, title, thumbnail }) => {
+    const dataItem = { sku: id, name: title, image: thumbnail };
+    const item = createProductItemElement(dataItem);
+    document.querySelector('.items').appendChild(item);
+  });
+};
+
+window.onload = async () => {
+  const fetchList = await fetchProducts('computador');
+  syncList(fetchList);
+};
