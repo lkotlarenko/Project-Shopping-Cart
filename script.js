@@ -28,7 +28,7 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
-function cartItemClickListener(event) {
+function cartItemClickListener() {
   
 }
 
@@ -40,6 +40,22 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
+const addToCart = () => {
+  // adiciona a função de adicionar ao carinho a todos os botoes dos itens da pagina
+  document.querySelectorAll('.item__add').forEach((item) =>
+    item.addEventListener('click', async (event) => {
+      // pega os dados do item clicado atraves da função fetchItem usando como parametro
+      // o inner text com o id do primeiro elemento filho do pai do botao clicado (primeiro irmao do botao)  
+      const product = await fetchItem(event.target.parentNode.childNodes[0].innerText);
+      // pegando as constantes para usar como parametros na funcao createCartItemElement 
+      const { id, title, price } = product;
+      const dataItem = { sku: id, name: title, salePrice: price };
+      const cartItem = createCartItemElement(dataItem);
+      // adicionando o item devolvido ao carrinho de compras
+      document.querySelector('.cart__items').appendChild(cartItem);
+    }));
+};
+
 const syncList = (fetchList) => {
   // extrair as informações de cada item no array devolvido pela api e usar com
   // a func createProductItemElement / dar append no elemento gerado
@@ -48,9 +64,9 @@ const syncList = (fetchList) => {
     const item = createProductItemElement(dataItem);
     document.querySelector('.items').appendChild(item);
   });
+  // chama a funcao para adicionar o event listeners aos botoes
+  addToCart();
 };
-
-console.log(fetchItem('MLB1613404303'));
 
 window.onload = async () => {
   const fetchList = await fetchProducts('computador');
