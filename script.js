@@ -1,6 +1,15 @@
 const actualCart = document.querySelector('.cart__items');
 const cartTotal = document.querySelector('.total__value');
 const emptyBtn = document.querySelector('.empty-cart');
+const load = document.querySelector('.loading__api');
+
+const loadApi = () => {
+  const loading = document.createElement('em');
+  loading.innerText = 'carregando...';
+  loading.className = 'loading';
+  load.appendChild(loading);
+};
+const finishLoad = () => load.remove();
 
 // set "cartTotal" on localStorage and update html value
 const refreshCartTotal = () => {
@@ -94,6 +103,7 @@ const syncList = (fetchList) => {
   });
   // calling function to add event listeners to all 'cart buttons'
   btnAddToCart();
+  finishLoad();
 };
 
 const getCartTotal = () => localStorage.getItem('cartTotal');
@@ -109,6 +119,7 @@ const syncStorage = () => {
 };
 
 window.onload = async () => {
+  loadApi();
   const fetchList = await fetchProducts('computador');
   syncList(fetchList);
   syncStorage();
