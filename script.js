@@ -1,12 +1,18 @@
 const actualCart = document.querySelector('.cart__items');
 const cartTotal = document.querySelector('.total__value');
+const emptyBtn = document.querySelector('.empty-cart');
 
 // set "cartTotal" on localStorage and update html value
 const refreshCartTotal = () => {
   let total = 0;
   // gets total value summing each cart item
   document.querySelectorAll('.cart__item').forEach((item) => {
-    total += Number(item.innerText.split('$')[1]);
+    const price = Number(item.innerText.split('$')[1]);
+    // making sure 'total' and 'price' are numbers
+    const newPrice = parseFloat(price);
+    const newTotal = Number(total);
+    // sum total with current item price (toFixed to round decimals)
+    total = (newTotal + newPrice).toFixed(2);
   });
   localStorage.setItem('cartTotal', total);
   cartTotal.innerText = total;
@@ -17,6 +23,12 @@ const syncCart = () => {
   saveCartItems(actualCart.innerHTML);
   refreshCartTotal();
 };
+
+const clearCart = () => {
+  actualCart.innerHTML = '';
+  syncCart();
+};
+emptyBtn.addEventListener('click', clearCart);
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
