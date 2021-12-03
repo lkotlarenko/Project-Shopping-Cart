@@ -1,5 +1,5 @@
 const actualCart = document.querySelector('.cart__items');
-const cartTotal = document.querySelector('.total__value');
+const cartTotal = document.querySelector('.total-price');
 const emptyBtn = document.querySelector('.empty-cart');
 const load = document.querySelector('.loading__api');
 
@@ -21,7 +21,8 @@ const refreshCartTotal = () => {
     const newPrice = parseFloat(price);
     const newTotal = Number(total);
     // sum total with current item price (toFixed to round decimals)
-    total = (newTotal + newPrice).toFixed(2);
+    // - update - removed .toFixed(2) from total to pass tests
+    total = (newTotal + newPrice);
   });
   localStorage.setItem('cartTotal', total);
   cartTotal.innerText = total;
