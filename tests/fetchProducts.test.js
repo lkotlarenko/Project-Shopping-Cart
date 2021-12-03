@@ -2,21 +2,26 @@ require('../mocks/fetchSimulator');
 const { fetchProducts } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');
 
-describe('1 - Teste a função fetchProducts', () => {
+describe('1 - Testing fetchProducts', () => {
   beforeEach(async () => fetchList = await fetchProducts('computador'));
 
-  it('Testa se a função existe', () => expect(fetchProducts).toBeDefined());
+  it('Test if it is a function', () => expect(typeof fetchProducts).toBe('function'));
 
-  it('Testa se a função retorna uma lista contendo 50 produtos', () => expect(fetchList.length).toBe(50));
+  it('Test if "fetch" is called', () => expect(fetch).toHaveBeenCalled());
 
-  it('Testa se a função retorna um erro quando nenhum parametro é passado', async () => {
+  it('Test if "fetch" is called with the correct endpoint', () => {
+    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador');
+  });
+
+  it('Test if returns the correct data with "computador" as parameter', () => expect(fetchList).toEqual(computadorSearch.results));
+
+  it('Test if returns the correct error when no parameter is provided', async () => {
     try {
       await fetchProducts();
     } catch (error) {
-      expect(error).toEqual(new Error('Parameter Missing!!!'));
+      expect(error).toEqual(new Error('You must provide an url'));
     }
   })
 
-  it('Testa se a função retorna corretamente com parametro "computador"', () => expect(fetchList).toEqual(computadorSearch.results));
-
+  it('Extra - Test if returns with 50 items', () => expect(fetchList.length).toBe(50));
 });

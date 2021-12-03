@@ -3,7 +3,7 @@ const url = (search) =>
   `https://api.mercadolibre.com/sites/MLB/search?q=${search}`;
 
 const fetchProducts = async (theme) => {
-  if (!theme) throw new Error('Parameter Missing!!!');
+  if (!theme) throw new Error('You must provide an url');
   try {
     // fetch na api retornando array result
     const data = await fetch(url(theme));

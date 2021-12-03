@@ -47,7 +47,7 @@ const addToCart = () => {
       // pega os dados do item clicado atraves da função fetchItem usando como parametro
       // o inner text com o id do primeiro elemento filho do pai do botao clicado (primeiro irmao do botao)  
       const product = await fetchItem(event.target.parentNode.childNodes[0].innerText);
-      // pegando as constantes para usar como parametros na funcao createCartItemElement 
+      // pegando as constantes para usar como parametros na funcao createCartItemElement
       const { id, title, price } = product;
       const dataItem = { sku: id, name: title, salePrice: price };
       const cartItem = createCartItemElement(dataItem);
