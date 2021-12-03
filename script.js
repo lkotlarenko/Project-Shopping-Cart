@@ -1,6 +1,22 @@
 const actualCart = document.querySelector('.cart__items');
-// function to save current cart
-const syncCart = () => saveCartItems(actualCart.innerHTML);
+const cartTotal = document.querySelector('.total__value');
+
+// set "cartTotal" on localStorage and update html value
+const refreshCartTotal = () => {
+  let total = 0;
+  // gets total value summing each cart item
+  document.querySelectorAll('.cart__item').forEach((item) => {
+    total += Number(item.innerText.split('$')[1]);
+  });
+  localStorage.setItem('cartTotal', total);
+  cartTotal.innerText = total;
+};
+
+// function to save current cart and update total cart value
+const syncCart = () => {
+  saveCartItems(actualCart.innerHTML);
+  refreshCartTotal();
+};
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -68,9 +84,12 @@ const syncList = (fetchList) => {
   btnAddToCart();
 };
 
+const getCartTotal = () => localStorage.getItem('cartTotal');
+
 // function to sync storage cart
 const syncStorage = () => {
   actualCart.innerHTML = getSavedCartItems();
+  cartTotal.innerText = getCartTotal();
   // re-adds event listeners to cart items
   document.querySelectorAll('.cart__item').forEach((item) => {
     item.addEventListener('click', cartItemClickListener);
