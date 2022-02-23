@@ -1,3 +1,4 @@
+//* This file may have parts of it written by @jeanpsv
 // function to get the correct api endpoint url
 const urlItem = (ItemID) => `https://api.mercadolibre.com/items/${ItemID}`;
 

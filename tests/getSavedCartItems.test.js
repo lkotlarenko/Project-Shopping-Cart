@@ -1,3 +1,4 @@
+//* This file may have parts of it written by @jeanpsv
 const localStorageSimulator = require('../mocks/localStorageSimulator');
 const getSavedCartItems = require('../helpers/getSavedCartItems');
 

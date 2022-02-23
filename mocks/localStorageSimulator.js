@@ -1,3 +1,4 @@
+//* File by @jeanpsv
 function localStorageSimulator(key) {
   Object.defineProperty(window, 'localStorage', {
     value: {

@@ -1,3 +1,4 @@
+//* This file may have parts of it written by @jeanpsv
 require('../mocks/fetchSimulator');
 const { fetchProducts } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');

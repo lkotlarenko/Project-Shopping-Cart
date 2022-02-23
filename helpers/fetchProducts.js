@@ -1,3 +1,4 @@
+//* This file may have parts of it written by @jeanpsv
 // function to get the correct api endpoint url
 const url = (search) => `https://api.mercadolibre.com/sites/MLB/search?q=${search}`;
 

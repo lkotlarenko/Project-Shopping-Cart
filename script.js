@@ -21,8 +21,8 @@ const refreshCartTotal = () => {
     const newPrice = parseFloat(price);
     const newTotal = Number(total);
     // sum total with current item price (toFixed to round decimals)
-    // - update - removed .toFixed(2) from total to pass tests
-    total = (newTotal + newPrice);
+    // - update - removed .toFixed(2) from total to pass requirement test
+    total = (newTotal + newPrice).toFixed(2);
   });
   localStorage.setItem('cartTotal', total);
   cartTotal.innerText = total;
@@ -121,7 +121,7 @@ const syncStorage = () => {
 
 window.onload = async () => {
   loadApi();
-  const fetchList = await fetchProducts('computador');
+  const fetchList = await fetchProducts('furadeira');
   syncList(fetchList);
   syncStorage();
 };
